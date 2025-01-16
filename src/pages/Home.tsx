@@ -48,17 +48,14 @@ function Home() {
       </form>
 
       <div className="movies-grid">
-        {movies.map(
-          (movie) =>
-            movie.title.toLowerCase().startsWith(searchQuery) && ( // retorna o filme se for o mesmo que esta salvo no state searchQuery
-              <MovieCard
-                title={movie.title}
-                release_date={movie.release_date}
-                url={movie.URL}
-                key={movie.id}
-              />
-            )
-        )}
+        {movies.map((movie) => (
+          <MovieCard
+            title={movie.title}
+            release_date={movie.release_date}
+            url={movie.URL}
+            key={movie.id}
+          />
+        ))}
       </div>
     </div>
   );
