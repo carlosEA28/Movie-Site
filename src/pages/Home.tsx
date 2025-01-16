@@ -25,7 +25,11 @@ function Home() {
     },
   ];
 
-  const handleSearch = () => {};
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    alert(searchQuery);
+    setSearchQuery("");
+  };
 
   return (
     <div className="home">
@@ -44,14 +48,17 @@ function Home() {
       </form>
 
       <div className="movies-grid">
-        {movies.map((movie) => (
-          <MovieCard
-            title={movie.title}
-            release_date={movie.release_date}
-            url={movie.URL}
-            key={movie.id} // precisa por, o react tem que saber as alteracoes dos estados por uma chave
-          />
-        ))}
+        {movies.map(
+          (movie) =>
+            movie.title.toLowerCase().startsWith(searchQuery) && ( // retorna o filme se for o mesmo que esta salvo no state searchQuery
+              <MovieCard
+                title={movie.title}
+                release_date={movie.release_date}
+                url={movie.URL}
+                key={movie.id}
+              />
+            )
+        )}
       </div>
     </div>
   );
